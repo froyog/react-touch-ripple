@@ -11,9 +11,18 @@ type Props = {
     rippleSize: number,
     timeout: {| enter: number, exit: number |},
     color?: string,
-}
+};
 
-class Ripple extends React.Component<Props> {
+type State = {
+    rippleEntering: boolean,
+    wrapperExiting: boolean,
+};
+
+class Ripple extends React.Component<Props, State> {
+    static defaultProps = {
+        color: 'currentColor',
+    };
+
     state = {
         rippleEntering: false,
         wrapperExiting: false,
@@ -77,9 +86,5 @@ class Ripple extends React.Component<Props> {
         );
     }
 }
-
-Ripple.defaultProps = {
-    color: 'currentColor',
-};
 
 export default Ripple;

@@ -6,3 +6,4 @@ public
 config
 /build
 
+docs/src/registerServiceWorker.js

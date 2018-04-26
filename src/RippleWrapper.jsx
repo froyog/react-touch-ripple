@@ -11,20 +11,27 @@ type Props = {
     className?: string,
     color?: string,
     center?: boolean,
-    component?: string
-}
+    component?: string,
+    children: React.Node,
+};
 
 type State = {
-    rippleArray: Array<React.Element>,
-    nextKey: number
-}
+    rippleArray: Array<React.Element<'Ripple'>>,
+    nextKey: number,
+};
 
 class RippleWrapper extends React.Component<Props, State> {
+    static defaultProps = {
+        components: 'div',
+    }
+
     state = {
         rippleArray: [],
         nextKey: 0,
     };
-    startTimeout: number = 0;
+    startTimeout: TimeoutID;
+    startWrapper: (() => void) | null = () => {};
+    ignoringMouseDown: boolean = false;
 
     handleMouseDown = (e: SyntheticMouseEvent<>) => { this.start(e); }
 
@@ -42,7 +49,15 @@ class RippleWrapper extends React.Component<Props, State> {
         clearTimeout(this.startTimeout);
     }
 
-    start (e: SyntheticEvent<> = {}) {
+    start (e: SyntheticTouchEvent<> | SyntheticMouseEvent<>) {
+        if (e.type === 'mousedown' && this.ignoringMouseDown) {
+            this.ignoringMouseDown = false;
+            return;
+        }
+        if (e.type === 'touchstart') {
+            this.ignoringMouseDown = true;
+        }
+
         const center = this.props.center;
 
         const element = ReactDOM.findDOMNode(this);
@@ -53,6 +68,8 @@ class RippleWrapper extends React.Component<Props, State> {
                 bottom: 0,
                 left: 0,
                 right: 0,
+                width: 0,
+                height: 0,
             };
         
         let rippleX, rippleY, rippleSize;
@@ -93,13 +110,13 @@ class RippleWrapper extends React.Component<Props, State> {
             this.startTimeout = setTimeout(() => {
                 this.startWrapper();
                 this.startWrapper = null;
-            }, 80);
+            }, 0);
         } else {
             this.createRipple({ rippleX, rippleY, rippleSize });
         }
     }
 
-    createRipple (params) {
+    createRipple (params: { rippleX: number, rippleY: number, rippleSize: number }) {
         const { rippleX, rippleY, rippleSize } = params;
         let rippleArray = this.state.rippleArray;
 
@@ -124,7 +141,7 @@ class RippleWrapper extends React.Component<Props, State> {
         });
     }
 
-    stop (e) {
+    stop (e: SyntheticEvent<>) {
         clearTimeout(this.startTimeout);
         const { rippleArray } = this.state;
 
@@ -180,10 +197,6 @@ class RippleWrapper extends React.Component<Props, State> {
             </TransitionGroup>
         );
     }
-};
-
-RippleWrapper.defaultProps = {
-    component: 'div',
 };
 
 export default RippleWrapper;
