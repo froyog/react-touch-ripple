@@ -176,25 +176,25 @@ class RippleWrapper extends React.Component<Props, State> {
         } = this.props;
 
         return (
-            <TransitionGroup
-                className={cn(
-                    'rtr-root',
-                    className,
-                )}
+            <div 
+                className={cn('rtr-root', className)}
                 onMouseDown={this.handleMouseDown}
                 onMouseUp={this.handleMouseUp}
                 onMouseLeave={this.handleMouseLeave}
                 onTouchStart={this.handleTouchStart}
                 onTouchEnd={this.handleTouchEnd}
                 onTouchMove={this.handleTouchMove}
-                component={component}
-                enter
-                exit
                 {...other}
             >
                 {children}
-                {this.state.rippleArray}
-            </TransitionGroup>
+                <TransitionGroup
+                    component="span"
+                    enter
+                    exit
+                >
+                    {this.state.rippleArray}
+                </TransitionGroup>
+            </div>
         );
     }
 };
