@@ -7,6 +7,15 @@ async function copyFile (file) {
     console.log(`Copied ${file} to ${buildPath}`);
 }
 
+async function copyCSSFile (CSS) {
+    const buildPathEs = path.resolve(__dirname, '../build/es/style/index.css');
+    const buildPathLib = path.resolve(__dirname, '../build/lib/style/index.css');
+    await fs.copy(CSS, buildPathEs);
+    console.log(`Copied ${CSS} to ${buildPathEs}`);
+    await fs.copy(CSS, buildPathLib);
+    console.log(`Copied ${CSS} to ${buildPathLib}`);
+}
+
 async function createPackageJson () {
     const packageJson = await new Promise(resolve => {
         fs.readFile(path.resolve(__dirname, '../package.json'), 'utf-8', (err, data) => {
@@ -33,5 +42,6 @@ async function createPackageJson () {
 
 (async function run () {
     await ['README.md', 'LICENSE', 'CHANGELOG.md'].map(file => copyFile(file));
+    await copyCSSFile('src/style/index.css');
     await createPackageJson();
 })();
