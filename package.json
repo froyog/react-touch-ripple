@@ -1,9 +1,13 @@
 {
   "name": "react-touch-ripple",
   "author": "froyog",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/froyog/react-touch-ripple.git"
+  },
+  "bugs": {
+    "url": "https://github.com/froyog/react-touch-ripple/issues"
   },
   "version": "0.1.0",
   "private": false,
@@ -14,11 +18,15 @@
   },
   "devDependencies": {
     "autoprefixer": "7.1.6",
+    "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.2",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-react-app": "^3.1.1",
+    "babel-preset-stage-1": "^6.24.1",
     "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
@@ -64,7 +72,12 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build:docs": "node scripts/build.js",
+    "build:commonjs": "cross-env NODE_ENV=package BABEL_ENV=commonjs babel ./src --ignore __tests__/*.js --out-dir ./build/lib",
+    "build:modules": "cross-env NODE_ENV=package BABEL_ENV=modules babel ./src --ignore __tests__/*.js --out-dir ./build/es",
+    "build": "yarn clean & yarn build:commonjs & yarn build:modules & yarn copyFiles",
     "test": "node scripts/test.js --env=jsdom",
+    "clean": "rimraf ./build",
+    "copyFiles": "node scripts/copyFiles",
     "lint": "eslint --ext .jsx,.js src --fix",
     "flow": "flow"
   },

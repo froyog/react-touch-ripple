@@ -1,0 +1,33 @@
+{
+    "env": {
+        "development": {
+            "presets": [ "react-app" ],
+            "plugins": [ "preval" ]
+        },
+        "production": {
+            "presets": [ "react-app" ],
+            "plugins": [ "preval" ]
+        },
+        "test": {
+            "presets": [ "react-app" ]
+        },
+        "commonjs": {
+            "presets": [ "./scripts/babel-preset.js", "stage-1", "react" ],
+            "plugins": [
+                "transform-object-assign",
+                "transform-react-constant-elements",
+                "transform-runtime",
+                "babel-plugin-transform-flow-strip-types"
+            ]
+        },
+        "modules": {
+            "presets": [ "./scripts/babel-preset.js", "stage-1", "react" ],
+            "plugins": [
+                "transform-object-assign",
+                "transform-react-constant-elements",
+                "transform-runtime",
+                "babel-plugin-transform-flow-strip-types"
+            ]
+        }
+    }
+}
