@@ -1,0 +1,55 @@
+.rtr-root {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.rtr-ripple-wrapper {
+    display: block;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.rtr-ripple {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.rtr-ripple-wrapper-exiting {
+    opacity: 0;
+    animation: rtr-ripple-exit 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rtr-ripple-entering {
+    opacity: 0.3;
+    transform: scale(1);
+    animation: rtr-ripple-enter 500ms cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+@keyframes rtr-ripple-enter {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes rtr-ripple-exit {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+.demo-button:focus {
+    border: 1px solid #00a1e9;
+}
