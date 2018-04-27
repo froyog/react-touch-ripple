@@ -4,10 +4,10 @@ import Ripples from 'react-touch-ripple';
 
 const App = () => {
     return (
-        <Ripples>
+        <Ripples center>
             <button>hello</button>
         </Ripples>
-    )
-}
+    );
+};
 
 export default App;

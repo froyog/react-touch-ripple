@@ -10,7 +10,7 @@ type Props = {
     rippleY: number,
     rippleSize: number,
     timeout: {| enter: number, exit: number |},
-    color?: string,
+    color: string,
 };
 
 type State = {
@@ -19,10 +19,6 @@ type State = {
 };
 
 class Ripple extends React.Component<Props, State> {
-    static defaultProps = {
-        color: 'currentColor',
-    };
-
     state = {
         rippleEntering: false,
         wrapperExiting: false,
