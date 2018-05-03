@@ -33,7 +33,7 @@ class RippleWrapper extends React.Component<Props, State> {
     };
     startTimeout: TimeoutID;
     startWrapper: (() => void) | null = () => {};
-    ignoringMouseDown: boolean = false;
+    ignoringMousedown: boolean = false;
 
     handleMouseDown = (e: SyntheticMouseEvent<>) => { this.start(e); }
 
@@ -52,12 +52,12 @@ class RippleWrapper extends React.Component<Props, State> {
     }
 
     start (e: SyntheticTouchEvent<> | SyntheticMouseEvent<>) {
-        if (e.type === 'mousedown' && this.ignoringMouseDown) {
-            this.ignoringMouseDown = false;
+        if (e.type === 'mousedown' && this.ignoringMousedown) {
+            this.ignoringMousedown = false;
             return;
         }
         if (e.type === 'touchstart') {
-            this.ignoringMouseDown = true;
+            this.ignoringMousedown = true;
         }
 
         const center = this.props.center;
