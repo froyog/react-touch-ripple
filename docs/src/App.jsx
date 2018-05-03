@@ -1,12 +1,14 @@
 import React from 'react';
-import './App.css';
-import Ripples from 'react-touch-ripple';
+import './index.css';
+import Hero from './Hero';
+import Demos from './Demos';
 
 const App = () => {
     return (
-        <Ripples center>
-            <button>hello</button>
-        </Ripples>
+        <div id="container">
+            <Hero />
+            <Demos />
+        </div>
     );
 };
 

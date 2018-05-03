@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import RippleWrapper from '../RippleWrapper.jsx';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 describe('<RippleWrapper />', () => {
     test('rendering correctly', () => {
@@ -54,7 +53,7 @@ describe('<RippleWrapper />', () => {
             const wrapper = mount(<RippleWrapper />);
             const instance = wrapper.instance();
             const clientX = 20,
-                  clientY = 10
+                clientY = 10;
             instance.start({ clientX, clientY });
             expect(wrapper.state().rippleArray[0].props.rippleX).toBe(clientX);
             expect(wrapper.state().rippleArray[0].props.rippleY).toBe(clientY);
@@ -95,5 +94,5 @@ describe('<RippleWrapper />', () => {
             expect(instance.ignoringMousedown).toBe(false);
             expect(wrapper.state().rippleArray.length).toBe(1);
         });
-    })
+    });
 });

@@ -32,14 +32,14 @@ describe('<Ripple />', () => {
         );
         expect(
             wrapper
-            .childAt(0)
-            .hasClass('rtr-ripple-wrapper')
+                .childAt(0)
+                .hasClass('rtr-ripple-wrapper')
         ).toBe(true);
         expect(
             wrapper
-            .childAt(0)
-            .childAt(0)
-            .hasClass('rtr-ripple')
+                .childAt(0)
+                .childAt(0)
+                .hasClass('rtr-ripple')
         ).toBe(true);
     });
 
@@ -57,18 +57,18 @@ describe('<Ripple />', () => {
         );
         expect(
             wrapper
-            .childAt(0)
-            .childAt(0)
-            .get(0)
-            .props
-            .style
+                .childAt(0)
+                .childAt(0)
+                .get(0)
+                .props
+                .style
         ).toMatchObject({
             left: 6,
             top: 40,
             width: 20,
             height: 20,
         });
-    })
+    });
 
     test('props: color', () => {
         const wrapper = shallow(
@@ -101,7 +101,7 @@ describe('<Ripple />', () => {
                     }}
                 />
             );
-        })
+        });
 
         test('start', () => {
             expect(wrapper.state().rippleEntering).toBe(false);
@@ -110,8 +110,8 @@ describe('<Ripple />', () => {
             expect(wrapper.state().rippleEntering).toBe(true);
             expect(
                 wrapper
-                .find('.rtr-ripple')
-                .hasClass('rtr-ripple-entering')
+                    .find('.rtr-ripple')
+                    .hasClass('rtr-ripple-entering')
             ).toBe(true);
         });
 
@@ -124,8 +124,8 @@ describe('<Ripple />', () => {
             expect(wrapper.state().wrapperExiting).toBe(true);
             expect(
                 wrapper
-                .find('.rtr-ripple-wrapper')
-                .hasClass('rtr-ripple-wrapper-exiting')
+                    .find('.rtr-ripple-wrapper')
+                    .hasClass('rtr-ripple-wrapper-exiting')
             ).toBe(true);
         });
     });
