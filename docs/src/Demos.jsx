@@ -12,6 +12,9 @@ const Demos = () => {
             <Ripples color="#fff">
                 <button>BUTTON</button>
             </Ripples>
+            <pre>
+                <code>import React from 'react'</code>
+            </pre>
         </div>
     )
 }
