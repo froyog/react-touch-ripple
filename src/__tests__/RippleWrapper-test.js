@@ -14,6 +14,20 @@ describe('<RippleWrapper />', () => {
         expect(wrapper.childAt(1).name()).toBe('TransitionGroup');
     });
 
+    test('rendering with corrent classes', () => {
+        const wrapper = shallow(
+            <RippleWrapper className="custom-class" />
+        );
+        expect(wrapper.hasClass('custom-class')).toBe(true);
+    });
+
+    test('spreading custom props', () => {
+        const wrapper = shallow(
+            <RippleWrapper data-custom="test" />
+        );
+        expect(wrapper.prop('data-custom')).toBe('test');
+    });
+
     test('prop: component', () => {
         const wrapper = shallow(<RippleWrapper component="span" />);
         expect(wrapper.name()).toBe('span');
