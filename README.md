@@ -20,8 +20,7 @@ npm install react-touch-ripple --save
 
 ```jsx
 import Ripples from 'react-touch-ripples';
-// import CSS files manually
-import 'react-touch-ripples/style';
+
 const Demo = () => (
     <Ripples>
         <button>CLICK</button>

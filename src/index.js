@@ -1,1 +1,1 @@
-export { default } from './RippleWrapper.jsx';
+export { default } from './RippleWrapper';
