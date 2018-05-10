@@ -80,7 +80,7 @@
     "test": "node scripts/test.js --env=jsdom",
     "clean": "rimraf ./build",
     "copyFiles": "node scripts/copyFiles",
-    "lint": "eslint --ext .jsx,.js src --fix",
+    "lint": "eslint --ext .jsx,.js src --fix & eslint --ext .jsx,.js docs/src --fix",
     "flow": "flow",
     "predeploy": "yarn build:docs",
     "deploy": "gh-pages -d docs/build"

@@ -37,7 +37,7 @@ const Demos = () => {
                 </Ripples>
             </section>
         </div>
-    )
-}
+    );
+};
 
 export default Demos;

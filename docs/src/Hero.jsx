@@ -14,6 +14,6 @@ const Hero = () => (
         </pre>
         <p><a href="https://github.com/froyog/react-touch-ripple" className="version">v0.1.1</a></p>
     </div>
-)
+);
 
 export default Hero;

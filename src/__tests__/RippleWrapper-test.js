@@ -63,7 +63,7 @@ describe('<RippleWrapper />', () => {
             enter: 300,
             exit: 200,
         });
-    })
+    });
 
     describe('creating ripples responding to mouse event', () => {
         test('creating unique ripples', () => {
