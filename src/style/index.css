@@ -48,8 +48,3 @@
         opacity: 0;
     }
 }
-
-
-.demo-button:focus {
-    border: 1px solid #00a1e9;
-}

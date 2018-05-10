@@ -1,12 +1,10 @@
 {
     "env": {
         "development": {
-            "presets": [ "react-app" ],
-            "plugins": [ "preval" ]
+            "presets": [ "react-app" ]
         },
         "production": {
-            "presets": [ "react-app" ],
-            "plugins": [ "preval" ]
+            "presets": [ "react-app" ]
         },
         "test": {
             "presets": [ "react-app" ]

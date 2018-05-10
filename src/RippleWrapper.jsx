@@ -13,6 +13,10 @@ type Props = {
     center?: boolean,
     component?: string,
     children: React.Node,
+    timeout: {
+        enter: number,
+        exit: number,
+    },
 };
 
 type State = {
@@ -22,7 +26,13 @@ type State = {
 
 class RippleWrapper extends React.Component<Props, State> {
     static defaultProps = {
-        components: 'div',
+        component: 'div',
+        center: false,
+        color: 'currentColor',
+        timeout: {
+            enter: 500,
+            exit: 500,
+        },
     }
 
     state = {
@@ -31,7 +41,7 @@ class RippleWrapper extends React.Component<Props, State> {
     };
     startTimeout: TimeoutID;
     startWrapper: (() => void) | null = () => {};
-    ignoringMouseDown: boolean = false;
+    ignoringMousedown: boolean = false;
 
     handleMouseDown = (e: SyntheticMouseEvent<>) => { this.start(e); }
 
@@ -50,15 +60,15 @@ class RippleWrapper extends React.Component<Props, State> {
     }
 
     start (e: SyntheticTouchEvent<> | SyntheticMouseEvent<>) {
-        if (e.type === 'mousedown' && this.ignoringMouseDown) {
-            this.ignoringMouseDown = false;
+        if (e.type === 'mousedown' && this.ignoringMousedown) {
+            this.ignoringMousedown = false;
             return;
         }
         if (e.type === 'touchstart') {
-            this.ignoringMouseDown = true;
+            this.ignoringMousedown = true;
         }
 
-        const center = this.props.center;
+        const { center, timeout } = this.props;
 
         const element = ReactDOM.findDOMNode(this);
         const rect = element
@@ -92,9 +102,6 @@ class RippleWrapper extends React.Component<Props, State> {
         // calculate the size of the ripple
         if (center) {
             rippleSize = Math.sqrt((2 * Math.pow(rect.width, 2) + Math.pow(rect.height, 2)) / 3);
-            if (rippleSize % 2 === 0) {
-                rippleSize -= 1;
-            }
         } else {
             const sizeX = Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
             const sizeY = Math.max(Math.abs((element ? element.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
@@ -104,29 +111,34 @@ class RippleWrapper extends React.Component<Props, State> {
         // Execute
         if (e.touches) {
             // delay the ripple effect for touch devices
+            // because touchend event always triggers fast enough
+            // without the user even noticed the ripple effect 
             this.startWrapper = () => {
-                this.createRipple({ rippleX, rippleY, rippleSize });
+                this.createRipple({ rippleX, rippleY, rippleSize, timeout });
             };
+            // the timeout can not be too long as it will become laggy
             this.startTimeout = setTimeout(() => {
                 this.startWrapper();
                 this.startWrapper = null;
-            }, 0);
+            }, 80);
         } else {
-            this.createRipple({ rippleX, rippleY, rippleSize });
+            this.createRipple({ rippleX, rippleY, rippleSize, timeout });
         }
     }
 
-    createRipple (params: { rippleX: number, rippleY: number, rippleSize: number }) {
-        const { rippleX, rippleY, rippleSize } = params;
+    createRipple (params: { 
+        rippleX: number, 
+        rippleY: number, 
+        rippleSize: number, 
+        timeout: { enter: number, exit: number } 
+    }) {
+        const { rippleX, rippleY, rippleSize, timeout } = params;
         let rippleArray = this.state.rippleArray;
 
         rippleArray = [
             ...rippleArray,
             <Ripple 
-                timeout={{
-                    enter: 500,
-                    exit: 500,
-                }}
+                timeout={timeout}
                 color={this.props.color}
                 key={this.state.nextKey}
                 rippleX={rippleX}
@@ -146,6 +158,10 @@ class RippleWrapper extends React.Component<Props, State> {
         const { rippleArray } = this.state;
 
         if (e.type === 'touchend' && this.startWrapper) {
+            // when touchend was triggerd
+            // before `createRipple` was fired
+            // so we invoke createRipple immediately
+            // and schedule for the stop event
             e.persist();
             this.startWrapper();
             this.startWrapper = null;
@@ -158,6 +174,7 @@ class RippleWrapper extends React.Component<Props, State> {
         this.startWrapper = null;
 
         if (rippleArray && rippleArray.length) {
+            // remove the first ripple
             this.setState({
                 rippleArray: rippleArray.slice(1),
             });
@@ -169,14 +186,14 @@ class RippleWrapper extends React.Component<Props, State> {
             className,
             // eslint-disable-next-line
             center,
-            component,
+            component: Component,
             children,
             color,
             ...other
         } = this.props;
 
         return (
-            <div 
+            <Component 
                 className={cn('rtr-root', className)}
                 onMouseDown={this.handleMouseDown}
                 onMouseUp={this.handleMouseUp}
@@ -194,7 +211,7 @@ class RippleWrapper extends React.Component<Props, State> {
                 >
                     {this.state.rippleArray}
                 </TransitionGroup>
-            </div>
+            </Component>
         );
     }
 };

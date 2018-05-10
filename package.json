@@ -11,6 +11,7 @@
   },
   "version": "0.1.1",
   "private": false,
+  "homepage": "https://froyog.github.io/react-touch-ripple",
   "dependencies": {
     "classnames": "^2.2.5",
     "prop-types": "^15.6.1",
@@ -47,6 +48,7 @@
     "file-loader": "1.1.5",
     "flow-bin": "^0.70.0",
     "fs-extra": "3.0.1",
+    "gh-pages": "^1.1.0",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
@@ -78,8 +80,10 @@
     "test": "node scripts/test.js --env=jsdom",
     "clean": "rimraf ./build",
     "copyFiles": "node scripts/copyFiles",
-    "lint": "eslint --ext .jsx,.js src --fix",
-    "flow": "flow"
+    "lint": "eslint --ext .jsx,.js src --fix & eslint --ext .jsx,.js docs/src --fix",
+    "flow": "flow",
+    "predeploy": "yarn build:docs",
+    "deploy": "gh-pages -d docs/build"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/scripts/setupTests.js",
