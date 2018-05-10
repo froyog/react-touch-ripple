@@ -48,6 +48,23 @@ describe('<RippleWrapper />', () => {
         expect(wrapper.state().rippleArray[0].props.rippleX).toBe(0);
     });
 
+    test('prop: timeout', () => {
+        const wrapper = mount(
+            <RippleWrapper 
+                timeout={{ 
+                    enter: 300,
+                    exit: 200,
+                }} 
+            />
+        );
+        wrapper.simulate('mousedown');
+        wrapper.update();
+        expect(wrapper.state().rippleArray[0].props.timeout).toMatchObject({
+            enter: 300,
+            exit: 200,
+        });
+    })
+
     describe('creating ripples responding to mouse event', () => {
         test('creating unique ripples', () => {
             const wrapper = mount(<RippleWrapper />);

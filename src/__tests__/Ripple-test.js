@@ -10,8 +10,8 @@ describe('<Ripple />', () => {
                 rippleY={10}
                 rippleSize={20}
                 timeout={{
-                    enter: 550,
-                    exit: 550
+                    enter: 500,
+                    exit: 500,
                 }}
             />
         );
@@ -25,8 +25,8 @@ describe('<Ripple />', () => {
                 rippleY={10}
                 rippleSize={20}
                 timeout={{
-                    enter: 550,
-                    exit: 550
+                    enter: 500,
+                    exit: 500,
                 }}
             />
         );
@@ -50,8 +50,8 @@ describe('<Ripple />', () => {
                 rippleY={50}
                 rippleSize={20}
                 timeout={{
-                    enter: 550,
-                    exit: 550
+                    enter: 500,
+                    exit: 500,
                 }}
             />
         );
@@ -78,13 +78,31 @@ describe('<Ripple />', () => {
                 rippleY={10}
                 rippleSize={20}
                 timeout={{
-                    enter: 550,
-                    exit: 550
+                    enter: 500,
+                    exit: 500,
                 }}
             />
         );
         const style = wrapper.find('.rtr-ripple').get(0).props.style;
         expect(style.backgroundColor).toBe('#00a1e9');
+    });
+
+    test('prop: timeout', () => {
+        const wrapper = shallow(
+            <Ripple 
+                rippleX={10}
+                rippleY={10}
+                rippleSize={20}
+                timeout={{
+                    enter: 300,
+                    exit: 200,
+                }}
+            />
+        );
+        const rippleStyle = wrapper.find('.rtr-ripple').get(0).props.style;
+        const wrapperStyle = wrapper.find('.rtr-ripple-wrapper').get(0).props.style;
+        expect(rippleStyle.animationDuration).toBe('300ms');
+        expect(wrapperStyle.animationDuration).toBe('200ms');
     });
 
     describe('behavior & functionality', () => {

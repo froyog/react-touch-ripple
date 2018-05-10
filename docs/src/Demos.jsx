@@ -23,6 +23,19 @@ const Demos = () => {
                     <button className="secondary">SECONDARY</button>
                 </Ripples>
             </section>
+            <section>
+                <h2>With Faster Reaction</h2>
+                <p className="desc">
+                    Set timeout property to control how faster are the ripples are showing or leaving.
+                </p>
+                <Ripples 
+                    className="button-container" 
+                    color="#fff"
+                    timeout={{ enter: 260, exit: 500 }}
+                >
+                    <button className="primary">FASTER</button>
+                </Ripples>
+            </section>
         </div>
     )
 }

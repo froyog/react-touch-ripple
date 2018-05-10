@@ -43,6 +43,7 @@ class Ripple extends React.Component<Props, State> {
             rippleY,
             rippleSize,
             color,
+            timeout,
             ...other
         } = this.props;
         const { wrapperExiting, rippleEntering } = this.state;
@@ -51,6 +52,7 @@ class Ripple extends React.Component<Props, State> {
             <Transition
                 onEnter={this.handleEnter}
                 onExit={this.handleExit}
+                timeout={timeout}
                 {...other}
             >
                 <span 
@@ -61,6 +63,7 @@ class Ripple extends React.Component<Props, State> {
                         },
                         className,
                     )}
+                    style={{ animationDuration: `${timeout.exit}ms`, }}
                 >
                     <span 
                         className={cn(
@@ -75,6 +78,7 @@ class Ripple extends React.Component<Props, State> {
                             top: rippleY - (rippleSize / 2),
                             left: rippleX - (rippleSize / 2),
                             backgroundColor: color,
+                            animationDuration: `${timeout.enter}ms`,
                         }} 
                     />
                 </span>
