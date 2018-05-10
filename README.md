@@ -76,6 +76,10 @@ const RippleSwitch = () => (
 );
 ```
 
+## Design Guidelines
+
+See [Choreography](https://material.io/guidelines/motion/choreography.html)
+
 ## License
 
 React Touch Ripple is licensed as [MIT](./LICENSE)
