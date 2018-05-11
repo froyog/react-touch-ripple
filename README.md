@@ -75,6 +75,20 @@ const RippleSwitch = () => (
 );
 ```
 
+### Changing Timeouts
+
+If you want to control how fast are the ripples showing and leaving. Pass in `timeout` property.
+
+The default value of this prop is `{ enter: 500, exit: 500 }`.
+
+```jsx
+const FasterDemo = () => (
+    <Ripples timeout={{ enter: 300, exit: 200 }}>
+        <button>FASTER</button>
+    </Ripples>
+);
+```
+
 ## Design Guidelines
 
 See [Choreography](https://material.io/guidelines/motion/choreography.html)

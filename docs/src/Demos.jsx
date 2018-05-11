@@ -26,7 +26,7 @@ const Demos = () => {
             <section>
                 <h2>With Faster Reaction</h2>
                 <p className="desc">
-                    Set timeout property to control how faster are the ripples are showing or leaving.
+                    Set timeout property to control how fast are the ripples are showing or leaving.
                 </p>
                 <Ripples 
                     className="button-container" 
