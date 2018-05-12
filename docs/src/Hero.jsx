@@ -3,7 +3,7 @@ import React from 'react';
 const Hero = () => (
     <div className="hero">
         <svg id="content" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144">
-            <circle cx="72" cy="72" r="72" fill="#ffa940" />
+            <circle cx="72" cy="72" r="72" fill="#faad14" />
             <circle cx="72" cy="72" r="52" fill="#ffec3d" />
             <circle cx="72" cy="72" r="32" fill="#f8f8f8" />
         </svg>
