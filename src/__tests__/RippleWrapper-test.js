@@ -65,6 +65,25 @@ describe('<RippleWrapper />', () => {
         });
     });
 
+    test('propogating events', () => {
+        const mockOnClick = jest.fn();
+        const mockOnMouseDown = jest.fn();
+        const wrapper = mount(
+            <RippleWrapper>
+                <button 
+                    onClick={mockOnClick}
+                    onMouseDown={mockOnMouseDown}
+                >
+                    click
+                </button>
+            </RippleWrapper>
+        );
+        wrapper.find('button').simulate('click');
+        expect(mockOnClick.mock.calls.length).toBe(1);
+        wrapper.find('button').simulate('mousedown');
+        expect(mockOnMouseDown.mock.calls.length).toBe(1);
+    });
+
     describe('creating ripples responding to mouse event', () => {
         test('creating unique ripples', () => {
             const wrapper = mount(<RippleWrapper />);
