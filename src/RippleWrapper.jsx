@@ -9,9 +9,9 @@ import './style/index.css';
 
 type Props = {
     className?: string,
-    color?: string,
-    center?: boolean,
-    component?: string,
+    color: string,
+    center: boolean,
+    component: string,
     children: React.Node,
     timeout: {
         enter: number,
@@ -20,7 +20,7 @@ type Props = {
 };
 
 type State = {
-    rippleArray: Array<React.Element<'Ripple'>>,
+    rippleArray: Array<React.Element<typeof Ripple>>,
     nextKey: number,
 };
 

@@ -9,7 +9,7 @@ type Props = {
     rippleX: number,
     rippleY: number,
     rippleSize: number,
-    timeout: {| enter: number, exit: number |},
+    timeout: { enter: number, exit: number },
     color: string,
 };
 
