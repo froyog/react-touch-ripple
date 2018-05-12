@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/froyog/react-touch-ripple/issues"
   },
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": false,
   "homepage": "https://froyog.github.io/react-touch-ripple",
   "dependencies": {

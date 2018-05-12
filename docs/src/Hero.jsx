@@ -1,4 +1,5 @@
 import React from 'react';
+import { version } from '../../package.json';
 
 const Hero = () => (
     <div className="hero">
@@ -12,7 +13,7 @@ const Hero = () => (
         <pre>
             <code>npm install react-touch-ripple</code>
         </pre>
-        <p><a href="https://github.com/froyog/react-touch-ripple" className="version">v0.1.1</a></p>
+        <p><a href="https://github.com/froyog/react-touch-ripple" className="version">v{version}</a></p>
     </div>
 );
 
