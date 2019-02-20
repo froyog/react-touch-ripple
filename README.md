@@ -65,7 +65,7 @@ This is **UNNESSARY** and will behave out of your expectation.
 
 ### Center Ripples
 
-Provide `center` property on the `<Ripples>` will center every ripple it created. This is usually useful when you are applying ripples on a switch or checkbox component. See [demos](https://froyog.github.com/react-touch-ripple) for more information.
+Provide `center` property on the `<Ripples>` will center every ripple it created. This is usually useful when you are applying ripples on a switch or checkbox component. See [demos](https://froyog.github.io/react-touch-ripple) for more information.
 
 ```jsx
 const RippleSwitch = () => (
