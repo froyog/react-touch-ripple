@@ -64,7 +64,7 @@ const ColoredDemo = () => (
 
 ### 居中
 
-在 switch 或 checkbox 上调加 Ripple 时，一般希望 Ripple 能够居中，这时可以传递 center 使所有 ripple 居中。参见[demo](https://froyog.github.com/react-touch-ripple)
+在 switch 或 checkbox 上调加 Ripple 时，一般希望 Ripple 能够居中，这时可以传递 center 使所有 ripple 居中。参见 [demo](https://froyog.github.io/react-touch-ripple)
 
 ```jsx
 const RippleSwitch = () => (
