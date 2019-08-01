@@ -18,7 +18,7 @@ npm install react-touch-ripple --save
 ### 基本
 
 ```jsx
-import Ripples from 'react-touch-ripples';
+import Ripples from 'react-touch-ripple';
 
 const Demo = () => (
     <Ripples>
